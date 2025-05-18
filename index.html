@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تحديث التطبيق</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #202124;
+    }
+
+    .top-bar {
+      width: 100%;
+      background-color: #ffffff;
+      padding: 15px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-size: 20px;
+      font-weight: bold;
+      color: #202124;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .app-icon-wrapper {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin-bottom: 20px;
+    }
+
+    .progress-ring {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 6px solid #e0e0e0;
+      border-top: 6px solid #34b7f1;
+      animation: spin 1s linear infinite;
+      display: none;
+    }
+
+    .app-icon {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .app-info {
+      text-align: center;
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+
+    .app-info h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .app-info p {
+      font-size: 16px;
+      color: #5f6368;
+      margin-bottom: 20px;
+    }
+
+    .update-btn {
+      background-color: #34b7f1;
+      color: white;
+      padding: 13px 100px;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, transform 0.3s;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .update-btn:hover {
+      background-color: #008cba;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #9e9e9e;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* النافذة المنبثقة */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px 30px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 80%;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      font-size: 18px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .modal button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 15px;
+      background-color: #34b7f1;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">AL-Hammadi Play</div>
+
+<div class="content">
+  <div class="app-icon-wrapper">
+    <div class="progress-ring" id="progressRing"></div>
+    <img src="your-app-icon.png" alt="صورة التطبيق" class="app-icon">
+  </div>
+
+  <div class="app-info">
+    <h1>شواية وضاح الدبعي</h1>
+    <p>لم يتم تحديث التطبيق.</p>
+  </div>
+
+  <button class="update-btn" onclick="showModal()">لا يوجد تحديث حالياً</button>
+
+  <div class="footer">
+    <p>الإصدار 1.0.1</p>
+  </div>
+</div>
+
+<!-- النافذة المنبثقة -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <p>لا يوجد تحديث متاح حاليا</p>
+    <button onclick="closeModal()">حسناً</button>
+  </div>
+</div>
+
+<script>
+  function showModal() {
+    document.getElementById("myModal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
